@@ -23,3 +23,19 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ================= TIMER HELPER =================
+      - name: Start step timer
+        run: echo "STEP_START=$(date +%s)" >> $GITHUB_ENV
+
+      - name: Install yt-dlp
+        run: |
+          sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
+          sudo chmod a+rx /usr/local/bin/yt-dlp
+  
