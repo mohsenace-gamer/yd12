@@ -1,41 +1,10 @@
-name: 01- 🎬 Youtube Downloader 
+name: test-runner
 
 on:
   workflow_dispatch:
-    inputs:
-      youtube_url:
-        description: 'YouTube video URL'
-        required: true
-        type: string
-      quality:
-        description: 'Video quality (best, 1080, 720, 480, audio)'
-        required: false
-        default: 'best'
-        type: string
-      split_threshold_mb:
-        description: 'Split files larger than this MB (0 = never split)'
-        required: false
-        default: '90'
-        type: string
 
 jobs:
-  download-youtube:
+  test:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      # ================= TIMER HELPER =================
-      - name: Start step timer
-        run: echo "STEP_START=$(date +%s)" >> $GITHUB_ENV
-
-      - name: Install yt-dlp
-        run: |
-          sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
-          sudo chmod a+rx /usr/local/bin/yt-dlp
-  
+      - run: echo "runner works"
